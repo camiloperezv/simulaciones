@@ -287,7 +287,7 @@ elseif punto == 4
 
             MatrizConfusion=zeros(NumClases,NumClases);
             for i=1:size(Xtest,1)
-                MatrizConfusion(Yest(i+1),Ytest(i+1))=MatrizConfusion(Yest(i+1),Ytest(i+1)) + 1;
+                MatrizConfusion(Yest(i)+1,Ytest(i)+1)=MatrizConfusion(Yest(i)+1,Ytest(i)+1) + 1;
             end
             EficienciaTest(fold)=sum(diag(MatrizConfusion))/sum(sum(MatrizConfusion));
 
