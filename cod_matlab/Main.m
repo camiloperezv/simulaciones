@@ -2,8 +2,8 @@
 clc
 clear all
 close all
-
 Rept=10;
+
 load('db/bank-aditional-proccessed.mat');
 punto=input('Ingrese 1 para VecinosCercanos 2 para Random Forest 3 para RNA CLASSIFICATION  : ');
 if punto==1
@@ -103,7 +103,10 @@ elseif punto==2
     %%RANDOM FOREST%%
     %%% punto Random Forest %%%
 
-    NumClases=length(unique(Y)); %%% Se determina el n?mero de clases del problema.
+    NumClases=length(unique(Y1)); %%% Se determina el n?mero de clases del problema.
+    NumMuestras=size(X1,1);
+    
+    EficienciaTest=zeros(1,Rept);
     NumArboles=input('Ingrese Numero Arboles: ');
     disp(num2str(NumArboles));
     tic;
@@ -115,10 +118,10 @@ elseif punto==2
         rng('default');
         particion=cvpartition(NumMuestras,'Kfold',Rept);
         indices=particion.training(fold);
-        Xtrain=X(particion.training(fold),:);
-        Xtest=X(particion.test(fold),:);
-        Ytrain=Y(particion.training(fold));
-        Ytest=Y(particion.test(fold));
+        Xtrain=X1(particion.training(fold),:);
+        Xtest=X1(particion.test(fold),:);
+        Ytrain=Y1(particion.training(fold));
+        Ytest=Y1(particion.test(fold));
 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -136,7 +139,8 @@ elseif punto==2
 
         MatrizConfusion = zeros(NumClases,NumClases);
         for i=1:size(Xtest,1)
-            MatrizConfusion(Yest(i),Ytest(i)) = MatrizConfusion(Yest(i),Ytest(i)) + 1;
+            MatrizConfusion(Yest(i)+1,Ytest(i)+1) = MatrizConfusion(Yest(i)+1,Ytest(i)+1) + 1;
+            %MatrizConfusion(Yest(i),Ytest(i)) = MatrizConfusion(Yest(i),Ytest(i)) + 1;
         end
         EficienciaTest(fold) = sum(diag(MatrizConfusion))/sum(sum(MatrizConfusion));
 
@@ -162,7 +166,6 @@ elseif punto==3
     %load('DatosClasificacion.mat');
     [~,YC]=max(Y1,[],2);
     NumClases=length(unique(YC)); %%% Se determina el n?mero de clases del problema.
-    NumClases
     EficienciaTest=zeros(1,Rept);
     NumMuestras=size(X1,1);
 
