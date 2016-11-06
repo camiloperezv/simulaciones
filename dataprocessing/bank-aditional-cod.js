@@ -139,6 +139,9 @@ var processData = function processData (formatedData){
 		//euribor3m
 		finalObj[i][48] = formatedData[i][18];
 		// nr.employed
+		if( i < 100) {
+			console.log('formatedData[i][19]',formatedData[i][19]);
+		}
 		finalObj[i][49] = formatedData[i][19];
 		//Output
         finalObj[i][50] = '0';
