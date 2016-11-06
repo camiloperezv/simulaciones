@@ -1,4 +1,6 @@
 function ModeloRet = FunRandomForest(X,Y,NumArboles,Xname)
+    Txt = strcat('Probando con la variable',Xname);
+    disp(Txt);
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%                                      %%%%%%%%%%%%%%%%%%
@@ -56,8 +58,7 @@ function ModeloRet = FunRandomForest(X,Y,NumArboles,Xname)
     toc;
     Eficiencia = mean(EficienciaTest);
     IC = std(EficienciaTest);
-    Txt = strcat('Probando con la variable',Xname);
-    disp(Txt);
+    
     Texto=['La eficiencia obtenida fue = ', num2str(Eficiencia),' +- ',num2str(IC)];
     disp(Texto);
 

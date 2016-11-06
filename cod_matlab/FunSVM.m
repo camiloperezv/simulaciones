@@ -1,4 +1,6 @@
 function Modelo = FunSVM(X,Y,boxConstraint,Xname)
+    Txt = strcat('Probando con la variable',Xname);
+    disp(Txt);
     for gamma=[0.01 0.1 1 10 100];
 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -73,8 +75,8 @@ function Modelo = FunSVM(X,Y,boxConstraint,Xname)
 
         Eficiencia = mean(EficienciaTest);
         IC = std(EficienciaTest);
-        Txt = strcat('Probando con la variable',Xname);
-        disp(Txt);
+        txtGama=['Con un gama de  ', num2str(gamma)];
+        disp(txtGama);
         Texto=['La eficiencia obtenida fue = ', num2str(Eficiencia),' +- ',num2str(IC)];
         disp(Texto);
 

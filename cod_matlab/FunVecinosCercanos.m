@@ -1,4 +1,6 @@
 function Modelo = FunVecinosCercanos(X,Y,vec,Xname)
+    Txt = strcat('Probando con la variable',Xname);
+    disp(Txt);
     Rept=10;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -70,8 +72,7 @@ function Modelo = FunVecinosCercanos(X,Y,vec,Xname)
 
     Eficiencia=(sum(Yesti==Ytest))/length(Ytest);
     Error=1-Eficiencia;
-    Txt = strcat('Probando con la variable',Xname);
-    disp(Txt);
+    
     Texto=strcat('La eficiencia en prueba es: ',{' '},num2str(Eficiencia));
     disp(Texto);
     Texto=strcat('El error de clasificaci?n en prueba es: ',{' '},num2str(Error));
