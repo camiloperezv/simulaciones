@@ -1,4 +1,4 @@
-function ModeloRet = FunRNA(X,Y,Xname)
+function [ModeloRet, YESTRET] = FunRNA(X,Y,Xname)
     Txt = strcat('Probando con la variable',Xname);
     disp(Txt);
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -66,7 +66,8 @@ function ModeloRet = FunRNA(X,Y,Xname)
     
     Texto=['La eficiencia obtenida fue = ', num2str(Eficiencia),' +- ',num2str(IC)];
     disp(Texto);
-
+    ModeloRet = Modelo;
+    YESTRET = Yest;
     %%% Fin punto de clasificaci?n %%%
 
 end

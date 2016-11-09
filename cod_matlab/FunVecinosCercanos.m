@@ -1,4 +1,4 @@
-function Modelo = FunVecinosCercanos(X,Y,vec,Xname)
+function [Modelo, YESTRET] = FunVecinosCercanos(X,Y,vec,Xname)
     Txt = strcat('Probando con la variable',Xname);
     disp(Txt);
     Rept=10;
@@ -77,7 +77,8 @@ function Modelo = FunVecinosCercanos(X,Y,vec,Xname)
     disp(Texto);
     Texto=strcat('El error de clasificaci?n en prueba es: ',{' '},num2str(Error));
     disp(Texto);
-
+    Modelo = Yesti;
+    YESTRET = Yesti;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     %%% Fin Vecinos cercanos %%%

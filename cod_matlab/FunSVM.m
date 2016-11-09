@@ -1,4 +1,4 @@
-function Modelo = FunSVM(X,Y,boxConstraint,Xname)
+function [Modelo, YESTRET] = FunSVM(X,Y,boxConstraint,Xname)
     Txt = strcat('Probando con la variable',Xname);
     disp(Txt);
     for gamma=[0.01 0.1 1 10 100];
@@ -35,7 +35,7 @@ function Modelo = FunSVM(X,Y,boxConstraint,Xname)
 
             [Xtrain,mu,sigma]=zscore(Xtrain);
             Xtest=(Xtest - repmat(mu,size(Xtest,1),1))./repmat(sigma,size(Xtest,1),1);
-
+            size(Xtest,1)
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
             %%% Entrenamiento de los modelos. Se usa la metodologia One vs All. %%%
@@ -64,9 +64,9 @@ function Modelo = FunSVM(X,Y,boxConstraint,Xname)
             [~,Yest3]=testSVM(Modelo3,Xtest);
             [~,Yest] = max([Yest1,Yest2,Yest3],[],2); 
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
             MatrizConfusion=zeros(NumClases,NumClases);
             for i=1:size(Xtest,1)
+                Yest(i)
                 MatrizConfusion(Yest(i)+1,Ytest(i)+1)=MatrizConfusion(Yest(i)+1,Ytest(i)+1) + 1;
             end
             EficienciaTest(fold)=sum(diag(MatrizConfusion))/sum(sum(MatrizConfusion));
@@ -79,7 +79,8 @@ function Modelo = FunSVM(X,Y,boxConstraint,Xname)
         disp(txtGama);
         Texto=['La eficiencia obtenida fue = ', num2str(Eficiencia),' +- ',num2str(IC)];
         disp(Texto);
-
+        Modelo = Modelo1;
+        YESTRET = Yest;
         %%% Fin punto de clasificaci???n %%%
     end
 

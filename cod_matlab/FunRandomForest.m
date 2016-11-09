@@ -1,4 +1,4 @@
-function ModeloRet = FunRandomForest(X,Y,NumArboles,Xname)
+function [ModeloRet, YESTRET] = FunRandomForest(X,Y,NumArboles,Xname)
     Txt = strcat('Probando con la variable',Xname);
     disp(Txt);
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -61,7 +61,8 @@ function ModeloRet = FunRandomForest(X,Y,NumArboles,Xname)
     
     Texto=['La eficiencia obtenida fue = ', num2str(Eficiencia),' +- ',num2str(IC)];
     disp(Texto);
-
+    ModeloRet = Modelo;
+    YESTRET = Yest;
     %%% Fin punto Random Forest %%%
 
 end
