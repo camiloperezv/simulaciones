@@ -5,7 +5,7 @@ close all
 Rept=10;
 
 load('db/bank-aditional-proccessed.mat');
-punto=input('Ingrese 1 para VecinosCercanos 2 para Random Forest 3 para RNA CLASSIFICATION, 4 SVM, 5 REDUCCION SFS: ');
+punto=input('Ingrese 1 para VecinosCercanos 2 para Random Forest 3 para RNA CLASSIFICATION, 4 SVM, 5 REDUCCION SFS, 6 INDICE DE FISHER, 7: ');
 if punto==1
     Txt = strcat(' ********************* VECINOS CERCANOS **********************');
     disp(Txt);
@@ -42,7 +42,7 @@ if punto==1
     [ModVecinosX6_50,YESTVecinosX6_50] = FunVecinosCercanos(X6,Y6,numVecinos,'X6');
     [ModVecinosX7_50,YESTVecinosX7_50] = FunVecinosCercanos(X7,Y7,numVecinos,'X7');
     save('ModVecinos.m','ModVecinosX1_10','YESTVecinosX1_10','ModVecinosX2_10','YESTVecinosX2_10','ModVecinosX3_10','YESTVecinosX3_10','ModVecinosX4_10','YESTVecinosX4_10','ModVecinosX5_10','YESTVecinosX5_10','ModVecinosX6_10','YESTVecinosX6_10','ModVecinosX7_10','YESTVecinosX7_10','ModVecinosX1_20','YESTVecinosX1_20','ModVecinosX2_20','YESTVecinosX2_20','ModVecinosX3_20','YESTVecinosX3_20','ModVecinosX4_20','YESTVecinosX4_20','ModVecinosX5_20','YESTVecinosX5_20','ModVecinosX6_20','YESTVecinosX6_20','ModVecinosX7_20','YESTVecinosX7_20','ModVecinosX1_50','YESTVecinosX1_50','ModVecinosX2_50','YESTVecinosX2_50','ModVecinosX3_50','YESTVecinosX3_50','ModVecinosX4_50','YESTVecinosX4_50','ModVecinosX5_50','YESTVecinosX5_50','ModVecinosX6_50','YESTVecinosX6_50','ModVecinosX7_50','YESTVecinosX7_50');
-%elseif punto==2
+elseif punto==2
     Txt = strcat(' ********************* RANDOM FOREST **********************');
     disp(Txt);
     Txt = strcat('----------------------------- CON 5 ARBOLES');
@@ -94,7 +94,7 @@ if punto==1
     [ModArbolesX7_50,YESTArbolesX7_50] = FunRandomForest(X7,Y7,NumArboles,'X7');
 
     save('ModRandomForest.m','ModArbolesX1_5','YESTArbolesX1_5','ModArbolesX2_5','YESTArbolesX2_5','ModArbolesX3_5','YESTArbolesX3_5','ModArbolesX4_5','YESTArbolesX4_5','ModArbolesX5_5','YESTArbolesX5_5','ModArbolesX6_5','YESTArbolesX6_5','ModArbolesX7_5','YESTArbolesX7_5','ModArbolesX1_10','YESTArbolesX1_10','ModArbolesX2_10','YESTArbolesX2_10','ModArbolesX3_10','YESTArbolesX3_10','ModArbolesX4_10','YESTArbolesX4_10','ModArbolesX5_10','YESTArbolesX5_10','ModArbolesX6_10','YESTArbolesX6_10','ModArbolesX7_10','YESTArbolesX7_10','ModArbolesX1_20','YESTArbolesX1_20','ModArbolesX2_20','YESTArbolesX2_20','ModArbolesX3_20','YESTArbolesX3_20','ModArbolesX4_20','YESTArbolesX4_20','ModArbolesX5_20','YESTArbolesX5_20','ModArbolesX6_20','YESTArbolesX6_20','ModArbolesX7_20','YESTArbolesX7_20','ModArbolesX1_50','YESTArbolesX1_50','ModArbolesX2_50','YESTArbolesX2_50','ModArbolesX3_50','YESTArbolesX3_50','ModArbolesX4_50','YESTArbolesX4_50','ModArbolesX5_50','YESTArbolesX5_50','ModArbolesX6_50','YESTArbolesX6_50','ModArbolesX7_50','YESTArbolesX7_50');
-%elseif punto==5
+elseif punto==5
     %%Punto lab 6 reduccion sfs
     Txt = strcat(' ********************* SFS **********************');
     disp(Txt);
@@ -114,7 +114,7 @@ if punto==1
     Txt = strcat('Probando con la variable x7');
     ModSFSX7 = sequentialfs(f,X7,Y7); 
     save('ModRandomSFS.m','ModSFSX1','ModSFSX2','ModSFSX3','ModSFSX4','ModSFSX5','ModSFSX6','ModSFSX7');
-%elseif punto==3
+elseif punto==3
     Txt = strcat(' ********************* RNA **********************');
     disp(Txt);
     [ModRNAX1,YESTRNAX1] = FunRNA(X1,Y1,'X1');
@@ -153,7 +153,55 @@ elseif punto == 4
     save('ModSVM.m','ModSVMX1_100','YESTSVMX1_100','ModSVMX2_100','YESTSVMX2_100','ModSVMX3_100','YESTSVMX3_100','ModSVMX4_100','YESTSVMX4_100','ModSVMX5_100','YESTSVMX5_100','ModSVMX6_100','YESTSVMX6_100','ModSVMX7_100','YESTSVMX7_100');
 
 elseif punto==6
-
-    %FISHER
+    Txt = strcat(' ********************* indice fisher **********************');
+    disp(Txt);
+    Txt = strcat(' ********************* indice fisher X1**********************');
+    disp(Txt);
+    iFisher1 = indiceFisher(X1,Y1)
+    Txt = strcat(' ********************* indice fisher X2**********************');
+    disp(Txt);
+    iFisher2 = indiceFisher(X2,Y2)
+    Txt = strcat(' ********************* indice fisher X3**********************');
+    disp(Txt);
+    iFisher3 = indiceFisher(X3,Y3)
+    Txt = strcat(' ********************* indice fisher X4**********************');
+    disp(Txt);
+    iFisher4 = indiceFisher(X4,Y4)
+    Txt = strcat(' ********************* indice fisher X5**********************');
+    disp(Txt);
+    iFisher5 = indiceFisher(X5,Y5)
+    Txt = strcat(' ********************* indice fisher X6**********************');
+    disp(Txt);
+    iFisher6 = indiceFisher(X6,Y6)
+    Txt = strcat(' ********************* indice fisher X7**********************');
+    disp(Txt);
+    iFisher7 = indiceFisher(X7,Y7)
+elseif punto == 7
+    Txt = strcat(' ********************* indice fisher **********************');
+    disp(Txt);
+    Txt = strcat(' ********************* indice fisher DISCRIM X1**********************');
+    disp(Txt);
+    iFisherD1 = reduxIndiceFisherDisc(X1,Y1)
+    Txt = strcat(' ********************* indice fisher DISCRIM X2**********************');
+    disp(Txt);
+    iFisherD2 = reduxIndiceFisherDisc(X2,Y2)
+    Txt = strcat(' ********************* indice fisher DISCRIM X3**********************');
+    disp(Txt);
+    iFisherD3 = reduxIndiceFisherDisc(X3,Y3)
+    Txt = strcat(' ********************* indice fisher DISCRIM X4**********************');
+    disp(Txt);
+    iFisherD4 = reduxIndiceFisherDisc(X4,Y4)
+    Txt = strcat(' ********************* indice fisher DISCRIM X5**********************');
+    disp(Txt);
+    iFisherD5 = reduxIndiceFisherDisc(X5,Y5)
+    Txt = strcat(' ********************* indice fisher DISCRIM X6**********************');
+    disp(Txt);
+    iFisherD6 = reduxIndiceFisherDisc(X6,Y6)
+    Txt = strcat(' ********************* indice fisher DISCRIM X7**********************');
+    disp(Txt);
+    iFisherD7 = reduxIndiceFisherDisc(X7,Y7)
+    
+    %FISHER DISCRIM
+    
 end
 
